@@ -43,6 +43,7 @@ import java.util.List;
 import java.util.Random;
 
 import de.appplant.cordova.plugin.notification.action.Action;
+import de.appplant.cordova.plugin.notification.util.LaunchUtils;
 
 import static de.appplant.cordova.plugin.notification.Notification.EXTRA_UPDATE;
 
@@ -417,7 +418,7 @@ public final class Builder {
             intent.putExtras(extras);
         }
 
-        PendingIntent contentIntent = LaunchUtils.getServicePendingIntent(intent);
+        PendingIntent contentIntent = LaunchUtils.getServicePendingIntent(context, intent);
         builder.setContentIntent(contentIntent);
     }
 
@@ -463,7 +464,7 @@ public final class Builder {
             intent.putExtras(extras);
         }
 
-      return LaunchUtils.getServicePendingIntent(intent);
+      return LaunchUtils.getServicePendingIntent(context, intent);
     }
 
     /**
