@@ -85,11 +85,4 @@ abstract public class AbstractClickReceiver extends NotificationTrampolineActivi
     protected String getAction() {
         return getIntent().getExtras().getString(EXTRA_ID, CLICK_ACTION_ID);
     }
-
-    /**
-     * Getter for the received intent.
-     */
-    /*protected Intent getIntent() {
-        return intent;
-    }*/
 }
