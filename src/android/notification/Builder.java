@@ -414,7 +414,7 @@ public final class Builder {
             intent.putExtras(extras);
         }
 
-        PendingIntent contentIntent = LaunchUtils.getServicePendingIntent(context, intent);
+        PendingIntent contentIntent = LaunchUtils.getTaskStackPendingIntent(context, intent);
         builder.setContentIntent(contentIntent);
     }
 
@@ -460,7 +460,7 @@ public final class Builder {
             intent.putExtras(extras);
         }
 
-      return LaunchUtils.getServicePendingIntent(context, intent);
+      return LaunchUtils.getTaskStackPendingIntent(context, intent);
     }
 
     /**
