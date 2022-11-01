@@ -207,6 +207,10 @@
             target-dir="src/de/appplant/cordova/plugin/notification/receiver" />
 
         <source-file
+          src="src/android/notification/receiver/NotificationTrampolineActivity.java"
+          target-dir="src/de/appplant/cordova/plugin/notification/receiver" />
+
+        <source-file
             src="src/android/notification/trigger/DateTrigger.java"
             target-dir="src/de/appplant/cordova/plugin/notification/trigger" />
 
