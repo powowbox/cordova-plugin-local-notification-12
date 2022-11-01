@@ -9,6 +9,32 @@ import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
 public final class LaunchUtils {
 
+   private static final Random _random = new Random();
+   private static int getRandomCode() {
+     return _random.nextInt();
+   }
+
+   private static int getIntentFlags() {
+        int FLAG_MUTABLE = 33554432; // don't use pendingIntent.FLAG_MUTABLE, use numeric value instead to be able to compile api < 31
+        int flags = PendingIntent.FLAG_UPDATE_CURRENT;
+        if (android.os.Build.VERSION.SDK_INT >= 31) {
+          flags |= FLAG_MUTABLE;
+        }
+        return flags;
+    }
+
+    public static void getServicePendingIntent(Context context, Intent intent) {
+      return  PendingIntent.getService(context, getRandomCode(), intent, getIntentFlags();
+    }
+
+    public static void getBroadcastPendingIntent(Context context, Intent intent) {
+        return  PendingIntent.getBroadcast(context, getRandomCode(), intent, getIntentFlags();
+    }
+
+    public static void getActivityPendingIntent(Context context, Intent intent) {
+        return  PendingIntent.getActivity(context, getRandomCode(), intent, getIntentFlags();
+    }
+
     /***
      * Launch main intent from package.
      */

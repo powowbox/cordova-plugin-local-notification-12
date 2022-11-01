@@ -200,17 +200,7 @@ public final class Builder {
             .getLaunchIntentForPackage(pkgName)
             .putExtra("launchNotificationId", options.getId());
 
-        int reqCode = random.nextInt();
-        // request code and flags not added for demo purposes
-      int flags = PendingIntent.FLAG_UPDATE_CURRENT;
-      if (android.os.Build.VERSION.SDK_INT <= 30) {
-        // null
-      }else{
-        flags = 33554432 | PendingIntent.FLAG_UPDATE_CURRENT;
-      }
-
-      PendingIntent pendingIntent = PendingIntent.getActivity(context, reqCode, intent, flags);
-
+        PendingIntent pendingIntent = LaunchUtils.getActivityPendingIntent(context, intent);
         builder.setFullScreenIntent(pendingIntent, true);
     }
 
@@ -402,18 +392,7 @@ public final class Builder {
             intent.putExtras(extras);
         }
 
-        int reqCode = random.nextInt();
-
-      int flags = PendingIntent.FLAG_UPDATE_CURRENT;
-      if (android.os.Build.VERSION.SDK_INT <= 30) {
-        // null
-      }else{
-        flags = 33554432 | PendingIntent.FLAG_UPDATE_CURRENT;
-      }
-
-      PendingIntent deleteIntent = PendingIntent.getBroadcast(
-                context, reqCode, intent, flags);
-
+        PendingIntent deleteIntent = LaunchUtils.getBroadcastPendingIntent(context, intent);
         builder.setDeleteIntent(deleteIntent);
     }
 
@@ -438,18 +417,7 @@ public final class Builder {
             intent.putExtras(extras);
         }
 
-        int reqCode = random.nextInt();
-
-      int flags = PendingIntent.FLAG_UPDATE_CURRENT;
-      if (android.os.Build.VERSION.SDK_INT <= 30) {
-        // null
-      }else{
-        flags = 33554432 | PendingIntent.FLAG_UPDATE_CURRENT;
-      }
-
-      PendingIntent contentIntent = PendingIntent.getService(
-                context, reqCode, intent, flags);
-
+        PendingIntent contentIntent = LaunchUtils.getServicePendingIntent(intent);
         builder.setContentIntent(contentIntent);
     }
 
@@ -495,17 +463,7 @@ public final class Builder {
             intent.putExtras(extras);
         }
 
-        int reqCode = random.nextInt();
-
-      int flags = PendingIntent.FLAG_UPDATE_CURRENT;
-      if (android.os.Build.VERSION.SDK_INT <= 30) {
-        // null
-      }else{
-        flags = 33554432 | PendingIntent.FLAG_UPDATE_CURRENT;
-      }
-
-      return PendingIntent.getService(
-                context, reqCode, intent, flags);
+      return LaunchUtils.getServicePendingIntent(intent);
     }
 
     /**
