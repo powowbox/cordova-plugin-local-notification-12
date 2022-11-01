@@ -1,11 +1,14 @@
 package de.appplant.cordova.plugin.notification.util;
 
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 
 import static android.content.Intent.FLAG_ACTIVITY_REORDER_TO_FRONT;
 import static android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP;
 import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
+
+import java.util.Random;
 
 public final class LaunchUtils {
 
@@ -23,15 +26,15 @@ public final class LaunchUtils {
         return flags;
     }
 
-    public static void getServicePendingIntent(Context context, Intent intent) {
+    public static PendingIntent getServicePendingIntent(Context context, Intent intent) {
       return  PendingIntent.getService(context, getRandomCode(), intent, getIntentFlags());
     }
 
-    public static void getBroadcastPendingIntent(Context context, Intent intent) {
+    public static PendingIntent getBroadcastPendingIntent(Context context, Intent intent) {
         return  PendingIntent.getBroadcast(context, getRandomCode(), intent, getIntentFlags());
     }
 
-    public static void getActivityPendingIntent(Context context, Intent intent) {
+    public static PendingIntent getActivityPendingIntent(Context context, Intent intent) {
         return  PendingIntent.getActivity(context, getRandomCode(), intent, getIntentFlags());
     }
 
