@@ -29,7 +29,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.AudioManager;
 import android.net.Uri;
 import android.service.notification.StatusBarNotification;
 import android.util.Pair;
@@ -44,12 +43,6 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReadWriteLock;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
-
 import androidx.collection.ArraySet;
 import androidx.core.app.NotificationCompat;
 
@@ -60,7 +53,6 @@ import static android.os.Build.VERSION_CODES.M;
 import static androidx.core.app.NotificationCompat.PRIORITY_HIGH;
 import static androidx.core.app.NotificationCompat.PRIORITY_MAX;
 import static androidx.core.app.NotificationCompat.PRIORITY_MIN;
-import static java.lang.Thread.sleep;
 
 import de.appplant.cordova.plugin.notification.util.LaunchUtils;
 

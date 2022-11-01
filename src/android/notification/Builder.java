@@ -40,7 +40,6 @@ import android.graphics.Paint;
 import android.graphics.Canvas;
 
 import java.util.List;
-import java.util.Random;
 
 import de.appplant.cordova.plugin.notification.action.Action;
 import de.appplant.cordova.plugin.notification.util.LaunchUtils;
@@ -58,9 +57,6 @@ public final class Builder {
 
     // Notification options passed by JS
     private final Options options;
-
-    // To generate unique request codes
-    private final Random random = new Random();
 
     // Receiver to handle the clear event
     private Class<?> clearReceiver;
