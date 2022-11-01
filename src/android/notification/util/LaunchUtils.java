@@ -24,15 +24,15 @@ public final class LaunchUtils {
     }
 
     public static void getServicePendingIntent(Context context, Intent intent) {
-      return  PendingIntent.getService(context, getRandomCode(), intent, getIntentFlags();
+      return  PendingIntent.getService(context, getRandomCode(), intent, getIntentFlags());
     }
 
     public static void getBroadcastPendingIntent(Context context, Intent intent) {
-        return  PendingIntent.getBroadcast(context, getRandomCode(), intent, getIntentFlags();
+        return  PendingIntent.getBroadcast(context, getRandomCode(), intent, getIntentFlags());
     }
 
     public static void getActivityPendingIntent(Context context, Intent intent) {
-        return  PendingIntent.getActivity(context, getRandomCode(), intent, getIntentFlags();
+        return  PendingIntent.getActivity(context, getRandomCode(), intent, getIntentFlags());
     }
 
     /***
