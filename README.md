@@ -30,8 +30,11 @@
 
 ### Purpose of this fork
 
-Make the notification clickable on API 31+ by replacing the broadcast receiver by an activity used to start the main cordova activity.
+Make notifications clickable on API 31+ by replacing the broadcast receiver by an activity used to start the main cordova activity.
 
+<b>Important notice: </b>if the app is in background, the app must not be launched but put in foreground.
+To avoid launching the app in this case, add the following in your config.xml file:
+`<preference name="AndroidLaunchMode" value="singleInstance"/>`
 ### Notification components
 
 - Header area
