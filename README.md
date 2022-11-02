@@ -34,7 +34,7 @@ Make notifications clickable on API 31+ by replacing the broadcast receiver by a
 
 #### Important notice
 
-If the app is in background, the app must not be launched but put in foreground.
+If the app is in background, it must not be launched but put in foreground.
 To avoid launching the app in this case, add the following in your config.xml file:
 `<preference name="AndroidLaunchMode" value="singleInstance"/>`
 
