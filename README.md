@@ -33,7 +33,8 @@
 - Make notifications clickable on API 31+ by replacing the broadcast receiver by an activity used to start the main cordova activity.
 - If the app's in background and the triggerInApp option is set to true, there is no way to show to users a new notification since the notification is not displayed in the notification center and the app is not visible. 
   - <b>Fix</b>: if the app's running in background, display the notification in the notification center.
-
+- If the notification is scheduled / canceled / scheduled with the same id, the notification triggers twice.
+  - <b>Fix</b>:  Due to the random reqCode. Now use the notification id for the reqCode.
 
 
 #### Important notice
