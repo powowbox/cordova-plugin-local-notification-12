@@ -13,11 +13,6 @@ import java.util.Random;
 
 public final class LaunchUtils {
 
-   private static final Random _random = new Random();
-   private static int getRandomCode() {
-     return _random.nextInt();
-   }
-
    private static int getIntentFlags() {
         int FLAG_MUTABLE = 33554432; // don't use pendingIntent.FLAG_MUTABLE, use numeric value instead to be able to compile api < 31
         int flags = PendingIntent.FLAG_UPDATE_CURRENT;
@@ -27,22 +22,24 @@ public final class LaunchUtils {
         return flags;
     }
 
-    public static PendingIntent getServicePendingIntent(Context context, Intent intent) {
-      return  PendingIntent.getService(context, getRandomCode(), intent, getIntentFlags());
+    public static PendingIntent getBroadcastPendingIntent(Context context,
+                                                          Intent intent,
+                                                          int notificationId) {
+        return  PendingIntent.getBroadcast(context, notificationId, intent, getIntentFlags());
     }
 
-    public static PendingIntent getBroadcastPendingIntent(Context context, Intent intent) {
-        return  PendingIntent.getBroadcast(context, getRandomCode(), intent, getIntentFlags());
+    public static PendingIntent getActivityPendingIntent(Context context,
+                                                         Intent intent,
+                                                         int notificationId) {
+        return  PendingIntent.getActivity(context, notificationId, intent, getIntentFlags());
     }
 
-    public static PendingIntent getActivityPendingIntent(Context context, Intent intent) {
-        return  PendingIntent.getActivity(context, getRandomCode(), intent, getIntentFlags());
-    }
-
-    public static  PendingIntent getTaskStackPendingIntent(Context context, Intent intent) {
+    public static  PendingIntent getTaskStackPendingIntent(Context context,
+                                                           Intent intent,
+                                                           int notificationId) {
         TaskStackBuilder taskStackBuilder = TaskStackBuilder.create(context);
         taskStackBuilder.addNextIntentWithParentStack(intent);
-        return taskStackBuilder.getPendingIntent(getRandomCode(), getIntentFlags());
+        return taskStackBuilder.getPendingIntent(notificationId, getIntentFlags());
     }
 
 

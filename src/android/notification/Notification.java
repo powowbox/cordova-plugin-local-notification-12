@@ -218,8 +218,9 @@ public final class Notification {
 
             if (!date.after(new Date()) && trigger(intent, receiver))
                 continue;
-
-            PendingIntent pi = LaunchUtils.getBroadcastPendingIntent(context, intent);
+            int notificationId = options.getId();
+            PendingIntent pi =
+              LaunchUtils.getBroadcastPendingIntent(context, intent, notificationId);
 
             try {
                 switch (options.getPrio()) {
@@ -297,7 +298,8 @@ public final class Notification {
      */
     private void cancelScheduledAlarms() {
         SharedPreferences prefs = getPrefs(PREF_KEY_PID);
-        String id               = options.getIdentifier();
+        String id = options.getIdentifier();
+        int notificationId = options.getId();
         Set<String> actions     = prefs.getStringSet(id, null);
 
         if (actions == null)
@@ -305,7 +307,7 @@ public final class Notification {
 
         for (String action : actions) {
             Intent intent = new Intent(action);
-            PendingIntent pi = LaunchUtils.getBroadcastPendingIntent(context, intent);
+            PendingIntent pi = LaunchUtils.getBroadcastPendingIntent(context, intent, notificationId);
             if (pi != null) {
                 getAlarmMgr().cancel(pi);
             }

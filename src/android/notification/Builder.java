@@ -192,12 +192,14 @@ public final class Builder {
     void applyFullScreenIntent(NotificationCompat.Builder builder) {
         String pkgName  = context.getPackageName();
 
+        int notificationId  = options.getId();
         Intent intent = context
             .getPackageManager()
             .getLaunchIntentForPackage(pkgName)
-            .putExtra("launchNotificationId", options.getId());
+            .putExtra("launchNotificationId", notificationId);
 
-        PendingIntent pendingIntent = LaunchUtils.getActivityPendingIntent(context, intent);
+        PendingIntent pendingIntent =
+          LaunchUtils.getActivityPendingIntent(context, intent, notificationId);
         builder.setFullScreenIntent(pendingIntent, true);
     }
 
@@ -381,15 +383,17 @@ public final class Builder {
         if (clearReceiver == null)
             return;
 
+        int notificationId = options.getId();
         Intent intent = new Intent(context, clearReceiver)
                 .setAction(options.getIdentifier())
-                .putExtra(Notification.EXTRA_ID, options.getId());
+                .putExtra(Notification.EXTRA_ID, notificationId);
 
         if (extras != null) {
             intent.putExtras(extras);
         }
 
-        PendingIntent deleteIntent = LaunchUtils.getBroadcastPendingIntent(context, intent);
+        PendingIntent deleteIntent =
+          LaunchUtils.getBroadcastPendingIntent(context, intent, notificationId);
         builder.setDeleteIntent(deleteIntent);
     }
 
@@ -411,8 +415,9 @@ public final class Builder {
           return;
         }
 
+        int notificationId  =  options.getId();
         Intent intent = new Intent(context, clickActivity)
-                .putExtra(Notification.EXTRA_ID, options.getId())
+                .putExtra(Notification.EXTRA_ID, notificationId)
                 .putExtra(Action.EXTRA_ID, Action.CLICK_ACTION_ID)
                 .putExtra(Options.EXTRA_LAUNCH, options.isLaunchingApp())
                 .setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
@@ -421,7 +426,8 @@ public final class Builder {
             intent.putExtras(extras);
         }
 
-        PendingIntent contentIntent = LaunchUtils.getTaskStackPendingIntent(context, intent);
+        PendingIntent contentIntent =
+          LaunchUtils.getTaskStackPendingIntent(context, intent, notificationId);
         builder.setContentIntent(contentIntent);
     }
 
@@ -457,8 +463,9 @@ public final class Builder {
      * @param action Notification action needing the PendingIntent
      */
     private PendingIntent getPendingIntentForAction (Action action) {
+        int notificationId =  options.getId();
         Intent intent = new Intent(context, clickActivity)
-                .putExtra(Notification.EXTRA_ID, options.getId())
+                .putExtra(Notification.EXTRA_ID, notificationId)
                 .putExtra(Action.EXTRA_ID, action.getId())
                 .putExtra(Options.EXTRA_LAUNCH, action.isLaunchingApp())
                 .setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
@@ -467,7 +474,7 @@ public final class Builder {
             intent.putExtras(extras);
         }
 
-      return LaunchUtils.getTaskStackPendingIntent(context, intent);
+      return LaunchUtils.getTaskStackPendingIntent(context, intent, notificationId);
     }
 
     /**
@@ -476,7 +483,8 @@ public final class Builder {
      * @return true in case of an updated version.
      */
     private boolean isUpdate() {
-        return extras != null && extras.getBoolean(EXTRA_UPDATE, false);
+        return extras != null
+            && extras.getBoolean(EXTRA_UPDATE, false);
     }
 
     /**
