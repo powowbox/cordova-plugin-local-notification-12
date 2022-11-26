@@ -39,9 +39,13 @@
 
 #### Important notice
 
-If the app is in background, it must not be launched but put in foreground.
+<del>If the app is in background, it must not be launched but put in foreground.
 To avoid launching the app in this case, add the following in your config.xml file:
-`<preference name="AndroidLaunchMode" value="singleInstance"/>`
+`<preference name="AndroidLaunchMode" value="singleInstance"/>`</del>
+
+Not need anymore, and it's better to avoid because it can cause issues with the cordova camera plugin. 
+See https://stackoverflow.com/questions/10831562/camera-always-returns-resultcode-as-0
+
 
 #### To install
 

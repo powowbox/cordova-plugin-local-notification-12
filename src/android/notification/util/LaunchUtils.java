@@ -1,7 +1,6 @@
 package de.appplant.cordova.plugin.notification.util;
 
 import android.app.PendingIntent;
-import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
 
@@ -33,15 +32,6 @@ public final class LaunchUtils {
                                                          int notificationId) {
         return  PendingIntent.getActivity(context, notificationId, intent, getIntentFlags());
     }
-
-    public static  PendingIntent getTaskStackPendingIntent(Context context,
-                                                           Intent intent,
-                                                           int notificationId) {
-        TaskStackBuilder taskStackBuilder = TaskStackBuilder.create(context);
-        taskStackBuilder.addNextIntentWithParentStack(intent);
-        return taskStackBuilder.getPendingIntent(notificationId, getIntentFlags());
-    }
-
 
     /***
      * Launch main intent from package.

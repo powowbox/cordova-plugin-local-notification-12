@@ -427,7 +427,7 @@ public final class Builder {
         }
 
         PendingIntent contentIntent =
-          LaunchUtils.getTaskStackPendingIntent(context, intent, notificationId);
+          LaunchUtils.getActivityPendingIntent(context, intent, notificationId);
         builder.setContentIntent(contentIntent);
     }
 
@@ -474,7 +474,7 @@ public final class Builder {
             intent.putExtras(extras);
         }
 
-      return LaunchUtils.getTaskStackPendingIntent(context, intent, notificationId);
+      return LaunchUtils.getActivityPendingIntent(context, intent, notificationId);
     }
 
     /**
